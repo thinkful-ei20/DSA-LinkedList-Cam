@@ -175,6 +175,7 @@ function display(list) {
   let item = list.head;
 
   while(item) {
+    console.log(item.value);
     item = item.next;
   }
 }
@@ -262,12 +263,45 @@ function main() {
 
   display(SLL);
   size(SLL);
-  console.log(findPrevious(SLL, 'Boomer')); // Athena
-  console.log(findPrevious(SLL, 'Apollo')); // undefined
-  console.log(findLast(SLL)); // Starbuck
+  // console.log(findPrevious(SLL, 'Boomer')); // Athena
+  // console.log(findPrevious(SLL, 'Apollo')); // undefined
+  // console.log(findLast(SLL)); // Starbuck
 
+  /*
+  SLL.insertAfter('Helo', 'Hotdog');
+  SLL.insertAfter('Helo', 'Hotdog');
+  console.log('======================');
+  console.log('Before:');
+  display(SLL);
+  console.log('======================');
+  WhatDoesThisProgramDo(SLL);
+  console.log('After:');
+  display(SLL);
+  */
+ 
   return JSON.stringify(SLL, null, 2);
 }
 
 main();
 // console.log(main());
+
+
+// What does this program do?
+// It removes duliplcates from a linked list
+/*
+function WhatDoesThisProgramDo(lst){
+  let current = lst.head;
+  while(current !== null){
+    let newNode = current;
+    while (newNode.next !== null) {
+      if (newNode.next.value === current.value) {
+        newNode.next = newNode.next.next;
+      }
+      else{
+        newNode = newNode.next;
+      }
+    }
+    current = current.next;
+  }
+}
+*/
