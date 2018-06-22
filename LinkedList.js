@@ -169,8 +169,71 @@ class LinkedList {
   }
 }
 
+
+// Display: displays the linked list
+function display(list) {
+  let item = list.head;
+
+  while(item) {
+    item = item.next;
+  }
+}
+
+// Size: returns the size of the linked list
+function size(list) {
+  let counter = 0;
+  let item = list.head;
+
+  // check if there is an item.value and counter++ 
+  while (item) {
+    counter++;
+    item = item.next;
+  }
+  return counter;
+}
+
+// isEmpty: finds if the list is empty or not(without using the size() function)
+function isEmpty(list) {
+  return (!list.head);
+}
+
+// findPrevious: finds the node before the item you are looking for
+function findPrevious(list, searchItem) {
+  let item = list.head;
+  let previousNode = null;
+
+  while(item) {
+    if (item.value === searchItem) {
+      return (previousNode) ? previousNode.value : undefined;
+    } 
+    previousNode = item;
+    item = previousNode.next;
+  }
+}
+
+// findLast: returns the last node in the linked list
+function findLast(list) {
+  let item = list.head;
+
+  if (isEmpty(list)) {
+    return undefined;
+  }
+
+  while(item) {
+    if (item.next === null) {
+      return item.value;
+    }
+    item = item.next;
+  }
+}
+
 function main() {
+  let egLinkedList = new LinkedList();
   let SLL = new LinkedList();
+
+  // console.log(findPrevious(egLinkedList, 'Stuff')); // undefined
+  // console.log(JSON.stringify(egLinkedList, null, 2));
+  // console.log(findLast(egLinkedList)); // undefined
 
   // Creating a singly linked list
   SLL.insertFirst('Apollo');
@@ -183,7 +246,7 @@ function main() {
   SLL.insertLast('Tauhida');
 
   // Remove squirrel from the list
-  SLL.remove('squirrel');
+  // SLL.remove('squirrel');
 
   // insert Athena before Boomer
   SLL.insertBefore('Boomer', 'Athena');
@@ -197,7 +260,14 @@ function main() {
   // Remove Tauhida from the list
   SLL.remove('Tauhida');
 
+  display(SLL);
+  size(SLL);
+  console.log(findPrevious(SLL, 'Boomer')); // Athena
+  console.log(findPrevious(SLL, 'Apollo')); // undefined
+  console.log(findLast(SLL)); // Starbuck
+
   return JSON.stringify(SLL, null, 2);
 }
 
-console.log(main());
+main();
+// console.log(main());
